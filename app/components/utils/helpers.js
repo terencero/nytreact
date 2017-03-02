@@ -8,16 +8,28 @@ var authKey = '2394d654ed584bc5b7d79e45c2811297';
 var helper = {
     // This function runs the NYT articles query.
 
-    runQuery: function(articles) {
+    runQuery: function (articles) {
 
-    console.log(articles);
+        console.log(articles);
 
-    // call GET method
-    var queryURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=' + authKey + '&q=';
-    return axios.get(queryURL).then(function(response) {
-        // If GET gets a result, return taht result
-        if (response)
-    })
+        // call GET method
+        var queryURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=' + authKey + '&q=';
+        return axios.get(queryURL).then(function (response) {
+            // If GET gets a result, return taht result
+            if (response) {
+                return response;
+            } else {
+                return '';
+            }
+        });
     },
+// This function hits our own server to retrieve the record of query results
+getHistory: function() {
+    return axios.get('/api');
+},
 
+// This function posts new searches to our database.
+postHistory: function(articles) {
+    return axios.post('/api', { articles: articles });
 }
+};
