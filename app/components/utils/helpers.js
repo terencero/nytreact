@@ -1,25 +1,24 @@
 // Include the axios package for performing HTTP requests (promise based alternative to request).
 var axios = require('axios');
 
-// Geocoder API
-var authKey = '2394d654ed584bc5b7d79e45c2811297';
+// NYT API key
+var key = require('../../../keys');
 
 // Helper functions for making API calls
 var helper = {
     // This function runs the NYT articles query.
 
-    runQuery: function (articles) {
-
-        console.log(articles);
+    runQuery: function () {
 
         // call GET method
-        var queryURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=' + authKey + '&q=';
+        var nytKey = key.nytKey.key;
+        var queryURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=' + nytKey + '&q=tech';
         return axios.get(queryURL).then(function (response) {
-            // If GET gets a result, return taht result
+            // If GET gets a result, return that result
             if (response) {
                 return response;
             } else {
-                return '';
+                return console.log('error no articles');
             }
         });
     },
@@ -33,3 +32,5 @@ postHistory: function(articles) {
     return axios.post('/api', { articles: articles });
 }
 };
+
+module.exports = helper;

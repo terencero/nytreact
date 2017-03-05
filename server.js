@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+mongoose.Promise = Promise;
 
 // Create instance of express, assign it to app
 var app = express();
@@ -17,16 +18,16 @@ app.use(express.static("./public"));
 
 // Mongoose connection -------------------------------------------------------
 
-mongoose.connect('mongodb://localhost/...');
-var db = mongoose.connection;
+// mongoose.connect('mongodb://localhost/...');
+// var db = mongoose.connection;
 
-db.on('error', function(err) {
-    console.log('Mongoose Error: ', err);
-});
+// db.on('error', function(err) {
+//     console.log('Mongoose Error: ', err);
+// });
 
-db.once('open', function() {
-    console.log('Mongoose connection successful.');
-});
+// db.once('open', function() {
+//     console.log('Mongoose connection successful.');
+// });
 
 // ----------------------------------------------------------------------------
 
@@ -38,8 +39,8 @@ app.get('/', function(req, res) {
 });
 
 // This is the route we will send GET requests to retrieve our recent searches.
-app.get('/api', function() {
-
+app.get('/api', function(req, res) {
+    console.log(req);
     // Find all the records
     // code here
 });
