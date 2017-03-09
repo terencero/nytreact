@@ -1,5 +1,6 @@
 // Include the axios package for performing HTTP requests (promise based alternative to request).
 var axios = require('axios');
+var React = require('react');
 
 // NYT API key
 var keys = require('../../../keys');
@@ -18,12 +19,19 @@ var helper = {
             if (response.data.response.docs) {
                 console.log(response.data.response.docs);
                 var results = [];
+                var articles;
                 // iterate over the API response and assign data to variables.
-                for ( var  {headline: {main: title}, byline: {original: byline}, web_url: link}  of response.data.response.docs){
+                for ( var  {headline: {main: title}, pub_date: date, web_url: link}  of response.data.response.docs){
                 // console.log(title);
-                results.push({title: title, byline: byline, link: link});
+                var articleArray = {title, date, link};
+                //  articles = articleArray.map((article) =>
+                    articles = <div className="row"><div className="card-panel teal"><ul><span className="white-text"><li>{articleArray.title}</li><li>{articleArray.date}</li><a href={articleArray.link}>{articleArray.link}</a></span><hr/></ul></div></div>
+                // );
+                results.push(articles);
+                console.log('>',articles);
             }
-            console.log(results);
+            console.log('data',results);
+            
             return results;
             } else {
                 return console.log('error no articles');

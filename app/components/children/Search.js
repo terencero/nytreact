@@ -4,22 +4,34 @@ var React = require('react');
 
 // Import helper.js-----------------------------------------------------------------
 
-// var helpers = require('../utils/helpers');
+var helpers = require('../utils/helpers');
 // ---------------------------------------------------------------------------------
 
 // Create the search form component
 var Search = React.createClass({
     // set the generic state
-    getInitialState: function() {
+    componentDidUpdate: function () {
+        helpers.runQuery(this.state.term).then(function (data) {
+            if (data !== this.state.results) {
+                var dataArray = [];
+                console.log("dude", data);
+
+                this.setState({ result: data });
+
+
+            }
+        }.bind(this));
+    },
+    getInitialState: function () {
         return { term: '' };
-        
+
     },
     // Function to respond to the user input
-    handleChange: function(event) {
+    handleChange: function (event) {
         this.setState({ term: event.target.value });
     },
     // handle when a user submits
-    handleSubmit: function(event) {
+    handleSubmit: function (event) {
         // prevent form submission if user hits 'enter' instead of clicking the button
         event.preventDefault();
 
@@ -36,10 +48,16 @@ var Search = React.createClass({
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <h4>Topic</h4>
-                        <input type="text" id='term' value={this.state.topic} onChange={this.handleChange} required />
-                        <br/>
+                        <input type="text" id='term' value={this.state.term} onChange={this.handleChange} required />
+                        <br />
                         <a href='#/Search' className='btn waves-effect waves-light' type='submit'>Submit</a>
                     </form>
+                    <ul>
+
+                        {this.state.result}
+
+                    </ul>
+
                 </div>
             </div>
         );
