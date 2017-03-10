@@ -11,16 +11,14 @@ var helpers = require('../utils/helpers');
 var Search = React.createClass({
     // set the generic state
     componentDidUpdate: function () {
-        helpers.runQuery(this.state.term).then(function (data) {
-            if (data !== this.state.results) {
-                var dataArray = [];
+        helpers.runQuery(this.state.term).then( (data) => {
+            if (data !== this.state.results) {    
                 console.log("dude", data);
 
                 this.setState({ result: data });
-
-
             }
-        }.bind(this));
+        });
+        // helpers.postHistory
     },
     getInitialState: function () {
         return { term: '' };
@@ -50,13 +48,9 @@ var Search = React.createClass({
                         <h4>Topic</h4>
                         <input type="text" id='term' value={this.state.term} onChange={this.handleChange} required />
                         <br />
-                        <a href='#/Search' className='btn waves-effect waves-light' type='submit'>Submit</a>
+                        <a href='#/Results' className='btn waves-effect waves-light' type='submit'>Submit</a>
                     </form>
-                    <ul>
-
-                        {this.state.result}
-
-                    </ul>
+                   
 
                 </div>
             </div>

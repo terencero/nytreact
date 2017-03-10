@@ -22,9 +22,9 @@ module.exports = (
     // Wrap the routes in the high level component is the Router component.
     <Router history={hashHistory}>
         <Route path='/' component={Main}>
-            <Route path='search' component={Search} />
+            <Route path='Search' component={Search} />
             {/*<Route path='Saved' component={Saved} />*/}
-            <Route path='results' component={Results} />
+            <Route path='Results' component={Results} />
            <IndexRoute component={Search} /> 
         </Route>
     </Router>

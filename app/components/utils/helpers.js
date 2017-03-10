@@ -25,7 +25,7 @@ var helper = {
                 // console.log(title);
                 var articleArray = {title, date, link};
                 //  articles = articleArray.map((article) =>
-                    articles = <div className="row"><div className="card-panel teal"><ul><span className="white-text"><li>{articleArray.title}</li><li>{articleArray.date}</li><a href={articleArray.link}>{articleArray.link}</a></span><hr/></ul></div></div>
+                    articles = <div className="row"><div className="card-panel teal"><ul><span className="white-text"><li>{articleArray.title}</li><li>{articleArray.date}</li><a href={articleArray.link}>{articleArray.link}</a></span><hr/></ul></div><a href='#' className='btn waves-effect waves-light' type='submit'>Save</a></div>
                 // );
                 results.push(articles);
                 console.log('>',articles);
