@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var savedArticles = {
+var SavedArticleSchema = new Schema({
     // title of article
     title: {
         type: String
@@ -14,6 +14,7 @@ var savedArticles = {
     link: {
         type: String
     }
-};
+});
 
-module.exports = mongoose.model('Saved_Articles', new Schema(savedArticles));
+// Create the 'SavedArticles' model with our SavedArticlesSchema
+module.exports = mongoose.model('SavedArticle', new Schema(SavedArticleSchema));

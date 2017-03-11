@@ -1,6 +1,6 @@
 var React = require('react');
-var Search = require('./children/Search');
-var Results = require('./children/Results');
+// var Search = require('./children/Search');
+// var Results = require('./children/Results');
 // var Saved = require('./saved');
 
 // Import helper.js-----------------------------------------------------------------

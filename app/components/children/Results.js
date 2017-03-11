@@ -1,7 +1,7 @@
 // Include React
 var React = require('react');
 var helpers = require('../utils/helpers');
-var Search = require('./Search');
+// var Search = require('./Search');
 
 // Create Results component
 var Results = React.createClass({
@@ -14,7 +14,7 @@ var Results = React.createClass({
             <div>
                <ul>
 
-                        {this.props.result} 
+                       {this.props.result}
 
                     </ul>
             </div>

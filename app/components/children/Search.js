@@ -12,13 +12,12 @@ var Search = React.createClass({
     // set the generic state
     componentDidUpdate: function () {
         helpers.runQuery(this.state.term).then( (data) => {
-            if (data !== this.state.results) {    
+            if (data !== this.state.results) {
                 console.log("dude", data);
 
                 this.setState({ result: data });
             }
         });
-        // helpers.postHistory
     },
     getInitialState: function () {
         return { term: '' };
@@ -37,6 +36,10 @@ var Search = React.createClass({
         this.props.setTerm(this.state.term);
         this.setState({ term: '' });
     },
+    handleClick: (result) => {
+        helpers.postHistory(result);
+        
+    },
     render: function () {
         return (
             <div>
@@ -51,7 +54,7 @@ var Search = React.createClass({
                         <a href='#/Results' className='btn waves-effect waves-light' type='submit'>Submit</a>
                     </form>
                    
-
+                    {this.state.result}
                 </div>
             </div>
         );
