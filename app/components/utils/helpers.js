@@ -15,24 +15,9 @@ var helper = {
         var queryURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=' + nytKey + '&q=' + topic;
         // call GET method using axios
         return axios.get(queryURL).then(function (response) {
-            // If GET gets a response, return that as 'results'
+            // If GET gets a response, return response
             if (response.data.response.docs) {
-                console.log(response.data.response.docs);
-                var results = [];
-                var articles;
-                // iterate over the API response and assign data to variables.
-                for (var {headline: {main: title}, pub_date: date, web_url: link} of response.data.response.docs) {
-                    // console.log(title);
-                    var articleArray = { title, date, link };
-                    //  articles = articleArray.map((article) =>
-                    articles = <div className="row"><div className="card-panel teal"><ul><span className="white-text"><li>{articleArray.title}</li><li>{articleArray.date}</li><a href={articleArray.link}>{articleArray.link}</a></span><hr /></ul></div><a href='#' onClick={handleClick} className='btn waves-effect waves-light' type='submit'>Save</a></div>
-                    // );
-                    results.push(articles);
-                    console.log('>', articles);
-                }
-                console.log('data', results);
-
-                return results;
+                return response;
             } else {
                 return console.log('error no articles');
             }
