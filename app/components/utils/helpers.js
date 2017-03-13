@@ -28,9 +28,9 @@ var helper = {
         return axios.get('/api');
     },
 
-    // This function posts new searches to our database.
-    postHistory: function (articles) {
-        return axios.post('/api', { articles: articles });
+    // This function posts saved searches to our database.
+    postHistory: function (article) {
+        return axios.post('/api', { article: article });
     }
 };
 

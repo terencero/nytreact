@@ -64,8 +64,9 @@ var Search = React.createClass({
     render: function () {
         if (this.state.result){
         var article = this.state.result.map(function (article, index) {
-            return (<li key={index}>{article}<a href='' onClick={() => helpers.postHistory(article)} className='btn waves-effect waves-light' type='submit'>Save</a></li>);
+            return (<li key={index}>{article}<a href='' onClick={() => helpers.postHistory({article})} className='btn waves-effect waves-light' type='submit'>Save</a></li>);
         });
+
         }
         return (
             <div>

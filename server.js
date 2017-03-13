@@ -2,6 +2,8 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var routes = require('./controllers/nytreact_controller');
+var Promise = require("bluebird");
 mongoose.Promise = Promise;
 
 // Create instance of express, assign it to app
@@ -18,41 +20,43 @@ app.use(express.static("./public"));
 
 // Mongoose connection -------------------------------------------------------
 
-// mongoose.connect('mongodb://localhost/...');
-// var db = mongoose.connection;
+mongoose.connect('mongodb://localhost/nytreact_app_db');
+var db = mongoose.connection;
 
-// db.on('error', function(err) {
-//     console.log('Mongoose Error: ', err);
-// });
+db.on('error', function(err) {
+    console.log('Mongoose Error: ', err);
+});
 
-// db.once('open', function() {
-//     console.log('Mongoose connection successful.');
-// });
+db.once('open', function() {
+    console.log('Mongoose connection successful.');
+});
 
 // ----------------------------------------------------------------------------
+
+app.use('/', routes);
 
 // Routes------------------------------------------------------------------------
 
 // Main '/' Route. 
-app.get('/', function(req, res) {
-    res.sendFile(_dirname + '/public/index.html');
-});
+// app.get('/', function(req, res) {
+//     res.sendFile(_dirname + '/public/index.html');
+// });
 
-// This is the route we will send GET requests to retrieve our recent searches.
-app.get('/api', function(req, res) {
-    console.log(req);
-    // Find all the records
-    // code here
-});
+// // This is the route we will send GET requests to retrieve our recent searches.
+// app.get('/api', function(req, res) {
+//     console.log(req);
+//     // Find all the records
+//     // code here
+// });
 
-// This is the route we will send POST requests to save articles.
-app.post('/api', function(req, res) {
-    console.log('Body: ' + req.body);
+// // This is the route we will send POST requests to save articles.
+// app.post('/api', function(req, res) {
+//     console.log('Body: ' + req.body);
 
-    // Save the article based on the JSON input.
-    // Use Date.now() to always get the current date time
-    // code here
-});
+//     // Save the article based on the JSON input.
+//     // Use Date.now() to always get the current date time
+//     // code here
+// });
 
 //  ------------------------------------------------------------------------------
 
